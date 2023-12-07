@@ -12,7 +12,7 @@ import (
 // * Represents the game maze.
 type Maze struct {
 	// The actual Grid itself
-	Grid   []string
+	Grid   [][]string
 	Width  int
 	Height int
 }
@@ -89,7 +89,7 @@ func printMaze(inc_maze Maze, inc_mouse Mouse) {
 		for x, char := range line {
 			// Will print mouse `M` to replace character at given coordinate
 			if inc_mouse.X == x && inc_mouse.Y == y {
-				fmt.Print("M")
+				fmt.Print("🐭")
 			} else {
 				// When looping over a string, the characters are converted into unicode decimals that represent the character.
 					// ? Unicode: https://en.wikipedia.org/wiki/List_of_Unicode_characters
@@ -101,21 +101,38 @@ func printMaze(inc_maze Maze, inc_mouse Mouse) {
 	}
 }
 
+// layout := Maze{
+// 	Grid: [][]string{
+// 		"##########",
+// 		"#        #",
+// 		"# ####### #",
+// 		"# #     # #",
+// 		"# # ### # #",
+// 		"# # # # # #",
+// 		"#   # #   #",
+// 		"####### ###",
+// 		"#C       #",
+// 		"##########",
+// 	},
+// 	Width:  10,
+// 	Height: 10,
+// }
+
 // ! Function that will return the maze structure.
 func createMaze() Maze {
 	// Simple static maze layout
 	layout := Maze{
-		Grid: []string{
-			"##########",
-			"#        #",
-			"# ####### #",
-			"# #     # #",
-			"# # ### # #",
-			"# # # # # #",
-			"#   # #   #",
-			"####### ###",
-			"#C       #",
-			"##########",
+		Grid: [][]string{
+			{"🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫"},
+			{"🟫","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","🟫"},
+			{"🟫","⬜️","🟫","🟫","🟫","🟫","🟫","🟫","⬜️","🟫"},
+			{"🟫","⬜️","🟫","🟫","🟫","🟫","🟫","🟫","⬜️","🟫"},
+			{"🟫","⬜️","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫"},
+			{"🟫","⬜️","⬜️","⬜️","⬜️","⬜️","🟫","🟫","🟫","🟫"},
+			{"🟫","🟫","🟫","🟫","🟫","⬜️","🟫","🟫","🟫","🟫"},
+			{"🟫","🟫","🟫","🟫","🟫","⬜️","🟫","🟫","🟫","🟫"},
+			{"🟫","🧀","⬜️","⬜️","⬜️","⬜️","🟫","🟫","🟫","🟫"},
+			{"🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫"},
 		},
 		Width:  10,
 		Height: 10,
@@ -130,22 +147,22 @@ func handleInput(input string, inc_mouse *Mouse, maze Maze) {
 	// Only move mouse if target space is ' ' or 'C'.
 	case "w":
 		// Move mouse up. x = x, y = y - 1
-		if maze.Grid[inc_mouse.Y - 1][inc_mouse.X] == ' ' ||  maze.Grid[inc_mouse.Y - 1][inc_mouse.X] == 'C' {
+		if maze.Grid[inc_mouse.Y - 1][inc_mouse.X] == "⬜️" ||  maze.Grid[inc_mouse.Y - 1][inc_mouse.X] == "🧀" {
 			inc_mouse.Y--
 		}
 	case "a":
 		// Move mouse left. x = x - 1, y = y
-		if maze.Grid[inc_mouse.Y][inc_mouse.X - 1] == ' ' ||  maze.Grid[inc_mouse.Y][inc_mouse.X - 1] == 'C' {
+		if maze.Grid[inc_mouse.Y][inc_mouse.X - 1] == "⬜️" ||  maze.Grid[inc_mouse.Y][inc_mouse.X - 1] == "🧀" {
 			inc_mouse.X--
 		}
 	case "s":
 		// Move mouse down. x = x, y = y + 1
-		if maze.Grid[inc_mouse.Y + 1][inc_mouse.X] == ' ' ||  maze.Grid[inc_mouse.Y + 1][inc_mouse.X] == 'C' {
+		if maze.Grid[inc_mouse.Y + 1][inc_mouse.X] == "⬜️" ||  maze.Grid[inc_mouse.Y + 1][inc_mouse.X] == "🧀" {
 			inc_mouse.Y++
 		}
 	case "d":
 		// Move mouse right. x = x + 1, y = y
-		if maze.Grid[inc_mouse.Y][inc_mouse.X + 1] == ' ' ||  maze.Grid[inc_mouse.Y][inc_mouse.X + 1] == 'C' {
+		if maze.Grid[inc_mouse.Y][inc_mouse.X + 1] == "⬜️" ||  maze.Grid[inc_mouse.Y][inc_mouse.X + 1] == "🧀" {
 			inc_mouse.X++
 		}
 	}
