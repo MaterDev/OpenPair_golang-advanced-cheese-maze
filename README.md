@@ -1,12 +1,16 @@
-# OpenPair: Golang 04 - Get The Cheese
+# OpenPair: Golang - Advanced Cheese Maze
 
 ![Cover Image](./cover.png)
 
-## Mouse Maze Game
-
-### Overview
+## Overview
 
 Mouse Maze is a simple console-based game written in Go. In this game, players navigate a mouse through a maze to find cheese. The game is played in the terminal and uses basic character representations for the maze, mouse, and cheese.
+
+> ⚠️ *This is a fork of a previous project I did for a live coding session on YouTube. The original project can be found [here](https://github.com/MaterDev/OpenPair_golang-cheese-maze-game).*
+
+> 👉🏾 In this repo I will be further extending the game by adding a few more features and refactoring the code to make it more readable and maintainable. This repo will part of an ongoing stream series, which can be accessed on YouTube [here](https://www.youtube.com/playlist?list=PL2NvA4OAtDRS2wBL2FvjiSlKCtcBrcFzc).
+
+---
 
 ### How to Play
 
