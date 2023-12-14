@@ -11,8 +11,16 @@ func main() {
 	// intialize a new mouse
 	mouse := mouse.Mouse{X: 1, Y: 1}
 	// intialize a new maze
-	width, height := 10, 10
-	maze := maze.CreateMaze(width, height)
+	width, height := 30, 30
 
-	play.Start(mouse, maze)
+	// Static maze
+	// maze := maze.CreateMaze(width, height)
+	// play.Start(mouse, maze)
+
+	// Generative maze
+	maze := maze.NewMaze(width, height)
+
+	maze.GenerateMaze(mouse)
+
+	play.Start(mouse, *maze)
 }
