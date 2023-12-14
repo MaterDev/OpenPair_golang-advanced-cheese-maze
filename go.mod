@@ -1,3 +1,3 @@
-module openpair/golang-intro_03
+module openpair/cheese-maze
 
 go 1.21.4
