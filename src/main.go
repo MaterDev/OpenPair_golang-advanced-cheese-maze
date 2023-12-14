@@ -11,7 +11,7 @@ func main() {
 	// intialize a new mouse
 	mouse := mouse.Mouse{X: 1, Y: 1}
 	// intialize a new maze
-	width, height := 30, 30
+	width, height := 100, 100
 
 	// Static maze
 	// maze := maze.CreateMaze(width, height)

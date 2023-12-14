@@ -5,11 +5,6 @@ import (
 	"openpair/cheese-maze/src/mouse"
 )
 
-type Cell struct {
-    X, Y     int
-    Visited  bool
-}
-
 // Directions for moving in the maze
 var directions = []struct {
     dx int
@@ -38,23 +33,32 @@ func (m *Maze) GenerateMaze(mouse mouse.Mouse) {
 }
 
 func (m *Maze) dfs(x, y int) {
-    // Mark the current cell as part of the path and as visited
+    // Mark the current cell as a path
     m.Grid[y][x] = "⬜️" 
 
-    // Shuffle directions to ensure randomness
+    // Randomize the order of directions to ensure different maze patterns
     rand.Shuffle(len(directions), func(i, j int) {
         directions[i], directions[j] = directions[j], directions[i]
     })
 
+    // Iterate through each direction
     for _, dir := range directions {
+        // Calculate the coordinates of the next cell in this direction
         nx, ny := x + 2*dir.dx, y + 2*dir.dy
 
-        // Check if the new cell is within bounds and has not been visited
-        if nx >= 0 && ny >= 0 && nx < m.Width && ny < m.Height && m.Grid[ny][nx] == "🟫" {
-            // Remove the wall between the current cell and the new cell
-            m.Grid[y+dir.dy][x+dir.dx] = "⬜️"
-            m.dfs(nx, ny)
+        // Check if the next cell is within the maze bounds
+        if nx >= 0 && ny >= 0 && nx < m.Width && ny < m.Height {
+            // Check if the next cell is a wall (has not been visited)
+            if m.Grid[ny][nx] == "🟫" {
+                // Convert the wall between the current cell and the next cell into a path
+                // This "carves" the path in the maze
+                m.Grid[y+dir.dy][x+dir.dx] = "⬜️"
+
+                // Continue the depth-first search from the next cell
+                m.dfs(nx, ny)
+            }
         }
     }
 }
+
 
