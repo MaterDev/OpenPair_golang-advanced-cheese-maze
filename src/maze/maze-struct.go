@@ -8,7 +8,8 @@ type Maze struct {
 	Height int
 }
 
-// ! Function that will return the maze structure.
+// ! Function that will return the static maze structure.
+// ! Deprecated
 func CreateMaze(width int, height int) Maze {
 	// Simple static maze layout
 	layout := Maze{
